@@ -1,11 +1,13 @@
 import './App.css'
-import ChatPage from "./pages/chat-page/chat-page.component.tsx";
+import { SessionProvider } from './context/session.context'
+import ChatPage from './pages/chat-page/chat-page.component'
 
 function App() {
-
-  return (
-    <ChatPage />
-  )
+    return (
+        <SessionProvider>
+            <ChatPage />
+        </SessionProvider>
+    )
 }
 
 export default App

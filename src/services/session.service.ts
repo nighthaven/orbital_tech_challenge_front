@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config/api.config'
-import type { SessionResponse } from '../types/session.types'
+import type { SessionResponse } from '../types/session/session-response.types.ts'
 
 export class SessionServiceError extends Error {
     public readonly statusCode?: number
