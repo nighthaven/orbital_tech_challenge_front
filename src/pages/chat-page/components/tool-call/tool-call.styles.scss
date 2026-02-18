@@ -1,0 +1,59 @@
+.tool-call {
+  background-color: rgba(34, 211, 238, 0.03);
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tool-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tool-color);
+}
+
+.tool-icon {
+  opacity: 0.8;
+}
+
+.tool-name {
+  font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: 12px;
+}
+
+.tool-body {
+  border-top: 1px solid rgba(34, 211, 238, 0.12);
+}
+
+.tool-section {
+  padding: 10px 14px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.tool-pre {
+  background-color: var(--bg-code);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+  color: var(--text-secondary);
+  overflow-x: auto;
+  line-height: 1.55;
+  margin: 0;
+  white-space: pre-wrap;
+}

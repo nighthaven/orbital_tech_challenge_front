@@ -1,0 +1,26 @@
+.plot-container {
+  background-color: var(--bg-surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+
+  .plot-icon {
+    font-size: 36px;
+    opacity: 0.4;
+  }
+
+  span {
+    font-size: 13px;
+  }
+}

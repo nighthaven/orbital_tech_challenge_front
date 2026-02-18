@@ -1,0 +1,43 @@
+.thinking-block {
+  background-color: rgba(167, 139, 250, 0.04);
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+
+  summary {
+    padding: 10px 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--thinking-color);
+    user-select: none;
+    list-style: none;
+
+    /* hide native disclosure marker */
+    &::-webkit-details-marker { display: none; }
+
+    .thinking-label { flex: 1; }
+
+    .thinking-chevron {
+      font-size: 10px;
+      opacity: 0.6;
+      transition: transform 0.2s;
+    }
+  }
+
+  &[open] summary .thinking-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+.thinking-content {
+  padding: 10px 14px 12px;
+  border-top: 1px solid rgba(167, 139, 250, 0.12);
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.65;
+}

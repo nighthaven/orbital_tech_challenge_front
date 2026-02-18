@@ -1,0 +1,45 @@
+/* ── Design tokens ──────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-app:      #090e1a;
+  --bg-sidebar:  #0c1120;
+  --bg-surface:  #111827;
+  --bg-elevated: #1a2235;
+  --bg-code:     #060a14;
+
+  /* Borders */
+  --border:      #1e2d42;
+  --border-dim:  #131e2e;
+
+  /* Text */
+  --text-primary:   #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted:     #3d5068;
+
+  /* Accent colors */
+  --accent:           #4f6ef7;
+  --accent-hover:     #6175f8;
+  --thinking-color:   #a78bfa;
+  --tool-color:       #22d3ee;
+
+  /* Shared radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Typography */
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
