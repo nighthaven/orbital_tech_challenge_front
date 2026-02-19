@@ -6,7 +6,11 @@ type ToolCallProps = ToolCallState
 export default function ToolCall({ name, args, result }: ToolCallProps) {
     const displayArgs = JSON.stringify(args, null, 2)
     const isPending = result === null
-    const displayResult = isPending ? null : JSON.stringify(result, null, 2)
+    const displayResult = isPending
+        ? null
+        : typeof result === 'string'
+          ? result
+          : JSON.stringify(result, null, 2)
 
     return (
         <div className="tool-call">
