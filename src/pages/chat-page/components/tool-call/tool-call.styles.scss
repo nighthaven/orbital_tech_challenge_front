@@ -19,6 +19,20 @@
   opacity: 0.8;
 }
 
+.tool-pending-badge {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-family: inherit;
+  animation: badge-blink 1.4s ease-in-out infinite;
+}
+
+@keyframes badge-blink {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
 .tool-name {
   font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
   font-size: 12px;

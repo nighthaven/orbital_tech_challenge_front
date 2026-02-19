@@ -1,11 +1,16 @@
 import './plot-container.styles.scss'
 
-export default function PlotContainer() {
+interface PlotContainerProps {
+    data: Record<string, unknown>
+}
+
+export default function PlotContainer({ data: _data }: PlotContainerProps) {
+    // TODO : je vais devoir mettre react-plotly.js ici
     return (
         <div className="plot-container">
             <div className="plot-placeholder">
                 <span className="plot-icon">📈</span>
-                <span>Le graphique Plotly s'affichera ici</span>
+                <span>Graphique Plotly reçu — rendu à brancher</span>
             </div>
         </div>
     )
