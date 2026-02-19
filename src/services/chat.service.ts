@@ -1,6 +1,5 @@
 import { API_BASE_URL, WS_BASE_URL } from '../config/api.config'
 import type { AskQuery } from '../types/chat/ask-query.types'
-import type { AskResponse } from '../types/chat/ask-response.types.ts'
 import type { StreamEvent } from '../types/stream-event.types.ts'
 import type { StreamEventHandlers } from '../types/stream-event-handlers.types.ts'
 
@@ -16,30 +15,6 @@ export class ChatServiceError extends Error {
 
 export class ChatService {
     private websocket: WebSocket | null = null
-
-    async ask(sessionId: string, question: string): Promise<AskResponse> {
-        const body: AskQuery = { question }
-
-        const response = await fetch(`${API_BASE_URL}/sessions/${sessionId}/ask`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-        })
-
-        if (response.status === 404) {
-            throw new ChatServiceError(`Session introuvable : ${sessionId}`, 404)
-        }
-
-        if (!response.ok) {
-            throw new ChatServiceError(
-                `Erreur lors de la requête : ${response.statusText}`,
-                response.status,
-            )
-        }
-
-        return response.json() as Promise<AskResponse>
-    }
-
 
     connect(sessionId: string, handlers: StreamEventHandlers): void {
         if (this.websocket) {
