@@ -12,23 +12,19 @@ export function useChat() {
     const { sessionId } = useSession()
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [isStreaming, setIsStreaming] = useState(false)
-
-    // Stocke la question à envoyer une fois la connexion WS ouverte
-    const pendingQuestionRef = useRef<string | null>(null)
+    const stockPendingQuestionRef = useRef<string | null>(null)
 
     const sendMessage = useCallback(
         (question: string) => {
             const trimmed = question.trim()
             if (!sessionId || isStreaming || !trimmed) return
 
-            // 1. Ajouter le message utilisateur immédiatement
             const userMessage: UserChatMessage = {
                 id: crypto.randomUUID(),
                 type: 'user',
                 content: trimmed,
             }
 
-            // 2. Créer un message assistant vide (sera rempli au fil du streaming)
             const assistantId = crypto.randomUUID()
             const assistantPlaceholder: AssistantChatMessage = {
                 id: assistantId,
@@ -44,9 +40,8 @@ export function useChat() {
 
             setMessages(prev => [...prev, userMessage, assistantPlaceholder])
             setIsStreaming(true)
-            pendingQuestionRef.current = trimmed
+            stockPendingQuestionRef.current = trimmed
 
-            // Helper : met à jour le message assistant en cours sans écraser tout l'état
             const updateAssistant = (
                 updater: (msg: AssistantChatMessage) => AssistantChatMessage,
             ) => {
@@ -65,14 +60,12 @@ export function useChat() {
                 chatService.disconnect()
             }
 
-            // 3. Ouvrir la connexion WebSocket et enregistrer les handlers
             chatService.connect(sessionId, {
-                // La question est envoyée dans onOpen car le WS doit être OPEN avant send()
                 onOpen: () => {
-                    const q = pendingQuestionRef.current
+                    const q = stockPendingQuestionRef.current
                     if (q) {
                         chatService.sendQuestion(q)
-                        pendingQuestionRef.current = null
+                        stockPendingQuestionRef.current = null
                     }
                 },
 
@@ -88,7 +81,7 @@ export function useChat() {
                         id: crypto.randomUUID(),
                         name,
                         args,
-                        result: null, // le résultat arrivera via onToolResult
+                        result: null,
                     }
                     updateAssistant(msg => ({
                         ...msg,
@@ -97,7 +90,6 @@ export function useChat() {
                 },
 
                 onToolResult: ({ name, result }) => {
-                    // On met à jour le premier tool call sans résultat qui porte ce nom
                     updateAssistant(msg => ({
                         ...msg,
                         toolCalls: msg.toolCalls.map(tc =>
@@ -129,7 +121,6 @@ export function useChat() {
                 },
 
                 onClose: () => {
-                    // Sécurité : si la connexion se ferme sans event done/error
                     updateAssistant(msg => ({ ...msg, isStreaming: false }))
                     setIsStreaming(false)
                 },

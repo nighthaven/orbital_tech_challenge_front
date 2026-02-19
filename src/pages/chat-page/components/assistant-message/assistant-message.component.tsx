@@ -20,7 +20,7 @@ export default function AssistantMessage({
         <div className="assistant-message">
             <div className="assistant-header">
                 <div className="assistant-avatar">✦</div>
-                <span className="assistant-label">Agent</span>
+                <span className="assistant-label">Orbital Agent</span>
             </div>
 
             <div className="assistant-body">
@@ -32,7 +32,6 @@ export default function AssistantMessage({
 
                 {text && <div className="assistant-text">{text}</div>}
 
-                {/* Indicateur de streaming si aucun texte encore */}
                 {isStreaming && !text && (
                     <div className="assistant-streaming">
                         <span className="streaming-dot" />
