@@ -9,14 +9,17 @@ interface MessageListProps {
 }
 
 export default function MessageList({ messages }: MessageListProps) {
-    const bottomRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+        const el = containerRef.current
+        if (el) {
+            el.scrollTop = el.scrollHeight
+        }
     }, [messages])
 
     return (
-        <div className="messages">
+        <div className="messages" ref={containerRef}>
             <div className="messages-inner">
                 {messages.map(msg =>
                     msg.type === 'user' ? (
@@ -25,7 +28,6 @@ export default function MessageList({ messages }: MessageListProps) {
                         <AssistantMessage key={msg.id} {...msg} />
                     ),
                 )}
-                <div ref={bottomRef} />
             </div>
         </div>
     )

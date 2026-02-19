@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { chatService } from '../services/chat.service'
 import { useSession } from '../context/session.context'
 import type {
@@ -13,6 +13,13 @@ export function useChat() {
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [isStreaming, setIsStreaming] = useState(false)
     const stockPendingQuestionRef = useRef<string | null>(null)
+
+    // Réinitialise les messages quand la session change (nouvelle conversation)
+    useEffect(() => {
+        chatService.disconnect()
+        setMessages([])
+        setIsStreaming(false)
+    }, [sessionId])
 
     const sendMessage = useCallback(
         (question: string) => {
