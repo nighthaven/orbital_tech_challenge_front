@@ -2,6 +2,9 @@
 
 Interface web React pour l'agent d'analyse de données.
 
+![visual_front.png](statics/visual_front.png)
+(C'est jolie hein?!)
+
 ## Prerequis
 
 - [Docker](https://docs.docker.com/get-docker/) (recommande, pas besoin de Node)

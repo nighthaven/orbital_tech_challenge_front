@@ -1,13 +1,16 @@
 import './chat-page.styles.scss'
 import { useSession } from '../../context/session.context'
 import { useChat } from '../../hooks/use-chat'
+import { useDatasets } from '../../hooks/use-datasets'
 import MessageList from './components/message-list/message-list.component'
 import MessageInput from './components/message-input/message-input.component'
 import ChatStatus from './components/chat-status/chat-status.component'
+import WelcomeScreen from './components/welcome-screen/welcome-screen.component'
 
 export default function ChatPage() {
     const { status, error, retry, newConversation } = useSession()
     const { messages, isStreaming, sendMessage } = useChat()
+    const { datasets, loading } = useDatasets()
 
     if (status !== 'ready') {
         return (
@@ -30,7 +33,13 @@ export default function ChatPage() {
                     + Nouveau chat
                 </button>
             </header>
-            <MessageList messages={messages} />
+
+            {messages.length === 0 ? (
+                <WelcomeScreen datasets={datasets} loading={loading} />
+            ) : (
+                <MessageList messages={messages} />
+            )}
+
             <MessageInput onSubmit={sendMessage} disabled={isStreaming} />
         </main>
     )
