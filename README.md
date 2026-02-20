@@ -16,7 +16,7 @@ Interface web React pour l'agent d'analyse de données.
 
 ```bash
 docker build -t orbital-front .
-docker run -p 5173:80 orbital-front
+docker run -d -p 5173:80 orbital-front         
 ```
 
 ### Option 2 — En local (Node.js)

@@ -1,5 +1,5 @@
 import './tool-call.styles.scss'
-import type { ToolCallState } from '../../../../types/chat/assistant-chat-message.types.ts'
+import type { ToolCallState } from '../../../../types/chat/toolcall-state.types'
 
 type ToolCallProps = ToolCallState
 
