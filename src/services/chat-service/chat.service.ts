@@ -1,9 +1,9 @@
-import { API_BASE_URL, WS_BASE_URL } from '../config/api.config'
-import type { AskQuery } from '../types/chat/ask-query.types'
-import type { StreamEvent } from '../types/stream-event.types.ts'
-import type { StreamEventHandlers } from '../types/stream-event-handlers.types.ts'
+import { WS_BASE_URL } from '../../config/api.config.ts'
+import type { StreamEvent } from '../../types/event/stream-event/stream-event.types.ts'
+import type { StreamEventHandlers } from '../../types/event/stream-event/stream-event-handlers.types.ts'
+import type { AskQuery } from './types/ask-query.types.ts'
 
-export class ChatServiceError extends Error {
+class ChatServiceError extends Error {
     public readonly statusCode?: number
 
     constructor(message: string, statusCode?: number) {

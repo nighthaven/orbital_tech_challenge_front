@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import './message-list.styles.scss'
-import type { ChatMessage } from '../../../../types/chat/chat-message.types'
+import type { ChatMessage } from '../../../../types/chat/assistant-chat-message.types.ts'
 import UserMessage from '../user-message/user-message.component'
 import AssistantMessage from '../assistant-message/assistant-message.component'
 

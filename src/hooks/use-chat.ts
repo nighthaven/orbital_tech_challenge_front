@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { chatService } from '../services/chat.service'
+import { chatService } from '../services/chat-service/chat.service.ts'
 import { useSession } from '../context/session.context'
-import type {
-    AssistantChatMessage,
-    ChatMessage,
-    ToolCallState,
-    UserChatMessage,
-} from '../types/chat/chat-message.types'
+import type { ToolCallState } from '../types/chat/toolcall-state.types.ts'
+import type {UserChatMessage} from '../types/chat/user-chat-message.types.ts'
+import type { AssistantChatMessage } from '../types/chat/assistant-chat-message.types.ts'
+import type { ChatMessage } from '../types/chat/chat-message.types.ts'
+
 
 export function useChat() {
     const { sessionId } = useSession()

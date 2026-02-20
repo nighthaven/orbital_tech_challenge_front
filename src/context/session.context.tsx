@@ -6,7 +6,7 @@ import {
     useRef,
     useState,
 } from 'react'
-import { sessionService } from '../services/session.service'
+import { sessionService } from '../services/session-service/session.service.ts'
 import type { SessionStatus } from '../types/session/session-status.types.ts'
 
 

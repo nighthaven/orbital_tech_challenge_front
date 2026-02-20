@@ -1,5 +1,5 @@
 import './assistant-message.styles.scss'
-import type { AssistantChatMessage } from '../../../../types/chat/chat-message.types'
+import type { AssistantChatMessage } from '../../../../types/chat/assistant-chat-message.types.ts'
 import ThinkingBlock from '../thinking-block/thinking-block.component'
 import ToolCall from '../tool-call/tool-call.component'
 import PlotContainer from '../plot-container/plot-container.component'
